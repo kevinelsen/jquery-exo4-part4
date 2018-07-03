@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/jq/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Exercice 4</title>
+  </head>
+  <body>
+    <form class="releveNote"  action="traitement.php" method="get">
+      <label for="lastName">Nom : </label><input type="text" name="lastName" id="lastName" /><br />
+      <label for="firstName">Prénom : </label><input type="text" name="firstName" id="firstName" /><br />
+      <label for="birthDate">Date de naissance : </label><input type="text" name="birthDate" id="birthDate" /><br />
+      <label for="birthPlace">Lieu de naissance : </label><input type="text" name="birthPlace" id="birthPlace" /><br />
+      <label for="firm">Société : </label><input type="text" name="firm" id="firm" /><br />
+      <label for="job">Emploi : </label><input type="text" name="job" id="job" /><br />
+      <button type="button" name="button">Présentation</button>
+    </form>
+    <script>
+    var regexName = /^[a-zA-Z\-çéèôüïë]+$/;
+    var regexBirthPlace = /^[a-zA-Z\-çéèôüïë'\/ ]+$/;
+    var regexJob = /^[a-zA-Z\-çéèôüïë ']+$/;
+    var regexBirthDate = /^(([0-2]{1}[\d]{1})|([3]{1}[0-1]{1}))\/(([0]{1}[\d]{1})|([1]{1}[0-2]{1}))\/([0-9]{4})$/
+    $('button').click(function(){
+        var birthDate = $('#birthDate').val();
+        var lastName = $('#lastName').val();
+        var firstName = $('#firstName').val();
+        var birthPlace = $('#birthPlace').val();
+        var firm = $('#firm').val();
+        var job = $('#job').val();
+        if (regexName.test(lastName) && regexBirthDate.test(birthDate) && regexName.test(firstName) && regexBirthPlace.test(birthPlace) && regexJob.test(job)) {
+          alert(firstName + ' ' + lastName + ', né le ' + birthDate + ' à ' + birthPlace + ', actuellement ' + job + ' à ' + firm);
+        } else {
+          alert('La saisie de vos champs contient des caractères incorrects');
+        }
+    });
+    </script>
+  </body>
+</html>
